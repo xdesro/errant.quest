@@ -1,0 +1,35 @@
+---
+layout: 'layout.html'
+eleventyExcludeFromCollections: true
+---
+<header class="site-nav">
+    <a class="site-nav__brand" href="/"><span class="light">https://</span>wander.country</a>
+    <div><span class="light">A tiny website by</span> <a href="https://henry.codes">Henry From Online</a></div>
+</header>
+<nav class="page-nav">
+    <div>December</div>
+    <ul class="page-nav__list" role="list">
+        {% for post in collections.all %}
+            <li>
+                <a href="#{{ post.data.title | slugify }}" class="page-nav__link">
+                    <span>{{ post.data.date | getDate }}</span>
+                    <span>{{ post.data.title }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+<main class="content">
+{% for post in collections.all %}
+    <article id="{{ post.data.title | slugify }}">
+        <header class="article-banner">
+            <time class="article-banner__date">{{ post.data.date | dateForTitle }}</time>
+            <h1 class="article-banner__title">{{ post.data.title }}</h1>
+            {% image post.data.imgUrl, post.data.imgAlt, 'article-banner__image' %}
+        </header>
+        <div>
+            {{ post.content | safe }}
+        </div>
+    </article>
+{% endfor %}
+</main>

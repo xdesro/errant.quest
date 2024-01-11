@@ -1,0 +1,229 @@
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/cormorant/CormorantGaramond-Regular.woff2') format('woff2'),
+        url('/fonts/cormorant/CormorantGaramond-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/fonts/cormorant/CormorantGaramond-Italic.woff2') format('woff2'),
+        url('/fonts/cormorant/CormorantGaramond-Italic.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/fonts/neue-montreal/PPNeueMontreal-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Neue Montreal';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/fonts/neue-montreal/PPNeueMontreal-Italic.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Neue Montreal';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/fonts/neue-montreal/PPNeueMontreal-Bold.woff2') format('woff2');
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Cormorant Garamond";
+    color: #222;
+    background-color: #fafafa;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus {
+    outline-style: dashed;
+    outline-color: #999;
+    outline-offset: 2px;
+    ;
+}
+
+s {
+    color: #999;
+    text-decoration-thickness: 1px;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+article {
+    margin-bottom: 10rem;
+    scroll-margin-top: 1.25rem;
+}
+
+article:after {
+    content: "❦";
+    color: #999;
+    filter: blur(.3px);
+}
+
+::selection {
+    background-color: #eee;
+}
+
+.light {
+    color: #555;
+}
+
+.site-nav {
+    font-family: "Neue Montreal";
+    max-width: min(30rem, calc(100vw - 2rem));
+    margin: 1.25rem auto 7rem;
+    text-transform: uppercase;
+    filter: blur(.3px);
+}
+
+@media (min-width: 1160px) {
+    .site-nav {
+        position: sticky;
+        top: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        max-width: calc(100vw - 3rem);
+        margin-bottom: 0;
+    }
+}
+
+.site-nav a {
+    text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+    text-decoration: underline;
+}
+
+.page-nav {
+    font-family: "Neue Montreal";
+    font-size: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: max-content 1fr;
+    max-width: min(30rem, calc(100vw - 2rem));
+    margin: 0 auto 7rem;
+    text-transform: uppercase;
+    filter: blur(.3px);
+}
+
+@media (min-width: 1160px) {
+    .page-nav {
+        position: fixed;
+        bottom: 10rem;
+        left: 1.25rem;
+        width: 100%;
+        max-width: 20rem;
+    }
+}
+
+.page-nav__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.page-nav__link {
+    display: grid;
+    grid-auto-flow: dense;
+    gap: 1ch;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+.page-nav__link:before {
+    display: block;
+    grid-column: 2;
+    width: 100%;
+    height: 1px;
+    content: "";
+    background-color: #dadada;
+}
+
+
+.page-nav a {
+    text-decoration: none;
+}
+
+.page-nav a:hover,
+.page-nav a:focus {
+    text-decoration: underline;
+}
+
+.content {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    max-width: min(30rem, calc(100vw - 2rem));
+    margin: 0 auto;
+    padding-right: 1.25rem;
+}
+
+.article-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 6/11;
+    margin-bottom: 2rem;
+    padding-top: .75rem;
+}
+
+.article-banner__date,
+.article-banner__title {
+    font-family: "Neue Montreal";
+    font-size: min(2.75rem, 8vw);
+    font-weight: bold;
+    line-height: .9;
+    position: sticky;
+    z-index: 1;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fafafa;
+    filter: blur(1px);
+}
+
+.article-banner__date {
+    top: .75rem;
+    margin-bottom: calc(.75rem + .9em);
+
+}
+
+.article-banner__title {
+    top: calc(.75rem + .9em);
+    margin-top: calc((.75rem + .9em) * -1);
+    margin-bottom: .75rem;
+    /* position: relative;
+z-index: 1; */
+}
+
+.article-banner picture {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+.article-banner__image {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
