@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "@11ty/eleventy-img": "^3.1.8"
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-img": "^3.1.8",
+    "markdown-it-attrs": "^4.1.6",
+    "markdown-it-bracketed-spans": "^1.0.1"
   }
 }

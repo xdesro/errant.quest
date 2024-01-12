@@ -3,8 +3,8 @@ layout: 'layout.html'
 eleventyExcludeFromCollections: true
 ---
 <header class="site-nav">
-    <a class="site-nav__brand" href="/"><span class="light">https://</span>wander.country</a>
-    <div><span class="light">A tiny website by</span> <a href="https://henry.codes">Henry From Online</a></div>
+    <a class="site-nav__brand" href="/"><span class="light">https://</span>errant.quest</a>
+    <div><span class="light">A travel journal by</span> <a href="https://henry.codes">Henry From Online</a></div>
 </header>
 <nav class="page-nav">
     <div>December</div>
@@ -25,9 +25,11 @@ eleventyExcludeFromCollections: true
         <header class="article-banner">
             <time class="article-banner__date">{{ post.data.date | dateForTitle }}</time>
             <h1 class="article-banner__title">{{ post.data.title }}</h1>
+            <div class="article-banner__image-wrapper">
             {% image post.data.imgUrl, post.data.imgAlt, 'article-banner__image' %}
+            </div>
         </header>
-        <div>
+        <div class="article-content">
             {{ post.content | safe }}
         </div>
     </article>
