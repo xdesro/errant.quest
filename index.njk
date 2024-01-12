@@ -34,4 +34,11 @@ eleventyExcludeFromCollections: true
         </div>
     </article>
 {% endfor %}
+<aside class="hover-images">
+    {% for post in collections.all %}
+        {% for image in post.data.hoverImages %}
+            {% image image.url, image.alt, 'hover-image', image.target %}
+        {% endfor %}
+    {% endfor %}
+</aside>
 </main>

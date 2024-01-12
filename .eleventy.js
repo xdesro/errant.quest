@@ -1,8 +1,15 @@
 const Image = require("@11ty/eleventy-img");
+const markdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.amendLibrary("md", (mdLib) =>
-    mdLib
+  eleventyConfig.setLibrary(
+    "md",
+    markdownIt({
+      html: true,
+      breaks: true,
+      linkify: true,
+      typographer: true
+    })
       .use(require("markdown-it-bracketed-spans"))
       .use(require("markdown-it-attrs"))
   );
@@ -24,7 +31,7 @@ module.exports = function (eleventyConfig) {
     return new Date(str).getUTCDate();
   });
 
-  eleventyConfig.addShortcode("image", async function (src, alt, classes) {
+  eleventyConfig.addShortcode("image", async function (src, alt, classes, id = null) {
     let metadata = await Image(src, {
       widths: [480, 960],
       outputDir: "./_site/img/",
@@ -33,6 +40,7 @@ module.exports = function (eleventyConfig) {
     let imageAttributes = {
       alt,
       class: classes,
+      id,
       sizes: [480, 960],
       loading: "lazy",
       decoding: "async",
@@ -42,3 +50,5 @@ module.exports = function (eleventyConfig) {
     return Image.generateHTML(metadata, imageAttributes);
   });
 };
+
+

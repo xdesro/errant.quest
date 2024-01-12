@@ -87,6 +87,16 @@ article:after {
     color: #555;
 }
 
+.hover {
+    /* border-bottom: 1px dashed #999; */
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #999;
+    cursor: pointer;
+    display:inline-block;
+}
+
 .site-nav {
     font-family: "Neue Montreal";
     max-width: min(30rem, calc(100vw - 2rem));
@@ -276,4 +286,29 @@ article:after {
     .article-content {
         padding-right: 0;
     }
+}
+
+.hover-images {
+    /* right: 1.25rem;
+    height: 100%;
+    bottom: 0; */
+    --x: 0;
+    --y: 0;
+    --angle: 0deg;
+}
+
+.hover-image {
+    pointer-events: none;
+    left: var(--x);
+    top: var(--y);
+    position: fixed;
+    width: 20rem;
+    border-radius: 1rem;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%) rotate(var(--angle));
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+.hover-image--active {
+    opacity: 1;
 }

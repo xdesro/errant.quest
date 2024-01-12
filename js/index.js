@@ -1,15 +1,9 @@
-const siteNav = document.querySelector(".site-nav");
-const pageNav = document.querySelector(".page-nav");
-const contentSection = document.querySelector(".content");
-
-contentSection.addEventListener("mouseover", () => {
-  siteNav.classList.add("site-nav--blurred");
-  pageNav.classList.add("page-nav--blurred");
-});
-contentSection.addEventListener("mouseout", () => {
-  siteNav.classList.remove("site-nav--blurred");
-  pageNav.classList.remove("page-nav--blurred");
-});
+const siteNav = document.querySelector('.site-nav');
+const pageNav = document.querySelector('.page-nav');
+const contentSection = document.querySelector('.content');
+const hoverImagesTargets = document.querySelectorAll('.hover');
+const hoverImagesContainer = document.querySelector('.hover-images');
+const hoverImages = document.querySelectorAll('.hover-image');
 
 const mapRange = (value, inputMin, inputMax, outputMin, outputMax, clamp) => {
   // Reference:
@@ -39,19 +33,17 @@ let windowSize;
 const getWindowSize = () =>
   (windowSize = { width: window.innerWidth, height: window.innerHeight });
 getWindowSize();
-window.addEventListener("resize", getWindowSize);
 
 let distanceScrolled;
 const getDistanceScrolled = () =>
   (distanceScrolled = window.pageYOffset || document.documentElement.scrollTop);
 getDistanceScrolled();
-window.addEventListener("scroll", getDistanceScrolled);
 
 class Drifter {
   constructor(el) {
     this.DOM = { el: el };
     this.DOM.image =
-      this.DOM.el.querySelector("picture") || this.DOM.el.querySelector("img");
+      this.DOM.el.querySelector('picture') || this.DOM.el.querySelector('img');
 
     this.renderedStyles = {
       innerTranslationY: {
@@ -59,7 +51,7 @@ class Drifter {
         current: 0,
         ease: 0.1,
         maxValue: parseInt(
-          getComputedStyle(this.DOM.image).getPropertyValue("--overflow"),
+          getComputedStyle(this.DOM.image).getPropertyValue('--overflow'),
           10
         ),
         setValue: () => {
@@ -108,7 +100,7 @@ class Drifter {
     };
   }
   initEvents() {
-    window.addEventListener("resize", () => this.resize());
+    window.addEventListener('resize', () => this.resize());
   }
   resize() {
     this.update();
@@ -126,14 +118,14 @@ class Drifter {
   }
   layout() {
     this.DOM.image.parentElement.style.setProperty(
-      "--drift",
+      '--drift',
       `translate3d(0,${this.renderedStyles.innerTranslationY.previous}px,0)`
     );
   }
 }
 
 const items = [
-  ...document.querySelectorAll(".article-banner__image-wrapper"),
+  ...document.querySelectorAll('.article-banner__image-wrapper'),
 ].map((item) => new Drifter(item));
 const animate = () => {
   for (const item of items) {
@@ -144,3 +136,59 @@ const animate = () => {
   requestAnimationFrame(() => animate());
 };
 animate();
+
+let hoverX = 0.1;
+let hoverY = 0.1;
+let randomRotation = 0;
+
+document.addEventListener('mousemove', ({ clientX, clientY }) => {
+  hoverX = clientX;
+  hoverY = clientY;
+});
+
+const easeHoverPosition = () => {
+  const compStyle = getComputedStyle(hoverImagesContainer);
+  const currentX = compStyle.getPropertyValue('--x');
+  const currentY = compStyle.getPropertyValue('--y');
+  const currentRotation = compStyle.getPropertyValue('--angle');
+
+  const newX = lerp(parseInt(currentX), hoverX, 0.3);
+  const newY = lerp(parseInt(currentY), hoverY, 0.3);
+  const newRotation = lerp(parseFloat(currentRotation), randomRotation, .3);
+  console.log(newRotation)
+
+  hoverImagesContainer.style.setProperty('--x', `${newX}px`);
+  hoverImagesContainer.style.setProperty('--y', `${newY}px`);
+  hoverImagesContainer.style.setProperty('--angle', `${newRotation}deg`);
+
+  requestAnimationFrame(() => easeHoverPosition());
+};
+const clearActiveHoverImages = () => {
+  hoverImages.forEach((image) => image.classList.remove('hover-image--active'));
+};
+easeHoverPosition();
+
+hoverImagesTargets.forEach((target) => {
+  target.addEventListener('mouseenter', (e) => {
+    clearActiveHoverImages();
+    randomRotation = Math.random() * (5 - -5) + -5;
+    console.log(randomRotation)
+    document
+      .querySelector(`#${target.dataset.imgTarget}`)
+      .classList.add('hover-image--active');
+  });
+  target.addEventListener('mouseout', clearActiveHoverImages);
+});
+contentSection.addEventListener('mouseover', () => {
+  siteNav.classList.add('site-nav--blurred');
+  pageNav.classList.add('page-nav--blurred');
+});
+contentSection.addEventListener('mouseout', () => {
+  siteNav.classList.remove('site-nav--blurred');
+  pageNav.classList.remove('page-nav--blurred');
+});
+window.addEventListener('resize', getWindowSize);
+window.addEventListener('scroll', () => {
+  getDistanceScrolled();
+  clearActiveHoverImages();
+});
