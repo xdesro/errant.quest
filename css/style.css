@@ -268,19 +268,16 @@ article:after {
     z-index: -1;
     top: 0;
     overflow: hidden;
-    --overflow: 80px;
+    --overflow: 20px;
     width: 100%;
     height: 100%;
     border-radius: 1rem;
-
 }
 
 .article-banner picture {
     height: 100%;
 
 }
-
-.article-banner img {}
 
 .article-banner__image {
     width: 100%;
