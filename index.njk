@@ -22,11 +22,18 @@ eleventyExcludeFromCollections: true
 <main class="content">
 {% for post in collections.all %}
     <article id="{{ post.data.title | slugify }}">
-        <header class="article-banner">
+        <header class="article-banner{% if post.data.inTransit %} article-banner--in-transit{% endif %}">
             <time class="article-banner__date">{{ post.data.date | dateForTitle }}</time>
             <h1 class="article-banner__title">{{ post.data.title }}</h1>
+            {% if post.data.inTransit %}
+                <div class="article-banner__stops">
+                    {% for stop in post.data.stops -%}
+                    {{ stop }}{% if loop.last %}{% else %}→{% endif %}
+                    {%- endfor %}
+                </div>
+            {% endif %}
             <div class="article-banner__image-wrapper">
-            {% image post.data.imgUrl, post.data.imgAlt, 'article-banner__image' %}
+                {% image post.data.imgUrl, post.data.imgAlt, 'article-banner__image' %}
             </div>
         </header>
         <div class="article-content">

@@ -89,6 +89,7 @@ article:after {
 
 .hover {
     cursor: pointer;
+
     text-decoration-line: underline;
     text-decoration-style: dashed;
     text-decoration-thickness: 1px;
@@ -244,6 +245,22 @@ article:after {
     top: calc(.75rem + .9em);
     margin-top: calc((.75rem + .9em) * -1);
     margin-bottom: .75rem;
+}
+
+.article-banner__stops {
+    font-family: 'Neue Montreal';
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: .9;
+    position: absolute;
+    right: 0;
+    bottom: 1.5rem;
+    left: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FAFAFA;
+    filter: blur(.75px);
 }
 
 .article-banner__image-wrapper {
