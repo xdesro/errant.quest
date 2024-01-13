@@ -154,8 +154,7 @@ const easeHoverPosition = () => {
 
   const newX = lerp(parseInt(currentX), hoverX, 0.3);
   const newY = lerp(parseInt(currentY), hoverY, 0.3);
-  const newRotation = lerp(parseFloat(currentRotation), randomRotation, .3);
-  console.log(newRotation)
+  const newRotation = lerp(parseFloat(currentRotation), randomRotation, 0.3);
 
   hoverImagesContainer.style.setProperty('--x', `${newX}px`);
   hoverImagesContainer.style.setProperty('--y', `${newY}px`);
@@ -171,8 +170,7 @@ easeHoverPosition();
 hoverImagesTargets.forEach((target) => {
   target.addEventListener('mouseenter', (e) => {
     clearActiveHoverImages();
-    randomRotation = Math.random() * (5 - -5) + -5;
-    console.log(randomRotation)
+    randomRotation = Math.random() * (10 - -10) + -10;
     document
       .querySelector(`#${target.dataset.imgTarget}`)
       .classList.add('hover-image--active');

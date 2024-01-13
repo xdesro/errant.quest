@@ -88,13 +88,11 @@ article:after {
 }
 
 .hover {
-    /* border-bottom: 1px dashed #999; */
+    cursor: pointer;
     text-decoration-line: underline;
     text-decoration-style: dashed;
     text-decoration-thickness: 1px;
     text-decoration-color: #999;
-    cursor: pointer;
-    display:inline-block;
 }
 
 .site-nav {
@@ -108,10 +106,10 @@ article:after {
 }
 
 .site-nav--blurred {
+    transition-duration: 1s;
     transform: scale(.98);
     opacity: .2;
     filter: blur(3px);
-    transition-duration: 1s;
 
 }
 
@@ -145,16 +143,16 @@ article:after {
     margin: 0 auto 7rem;
     transition: .5s ease;
     transition-property: filter, opacity, transform;
-    text-transform: uppercase;
     transform-origin: top right;
+    text-transform: uppercase;
     filter: blur(.3px);
 }
 
 .page-nav--blurred {
+    transition-duration: 1s;
     transform: scale(.98);
     opacity: .2;
     filter: blur(3px);
-    transition-duration: 1s;
 }
 
 @media (min-width: 1060px) {
@@ -247,30 +245,31 @@ article:after {
     margin-top: calc((.75rem + .9em) * -1);
     margin-bottom: .75rem;
 }
+
 .article-banner__image-wrapper {
+    position: absolute;
     z-index: -1;
+    top: 0;
+    overflow: hidden;
+    --overflow: 80px;
     width: 100%;
     height: 100%;
     border-radius: 1rem;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    --overflow: 80px;
 
 }
+
 .article-banner picture {
     height: 100%;
-    
-}
-.article-banner img {
 
 }
+
+.article-banner img {}
+
 .article-banner__image {
-    transform: var(--drift);
-
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: var(--drift);
     /* border-radius: 1rem; */
 }
 
@@ -289,26 +288,27 @@ article:after {
 }
 
 .hover-images {
-    /* right: 1.25rem;
-    height: 100%;
-    bottom: 0; */
     --x: 0;
     --y: 0;
     --angle: 0deg;
 }
 
 .hover-image {
-    pointer-events: none;
-    left: var(--x);
-    top: var(--y);
     position: fixed;
+    top: var(--y);
+    left: var(--x);
     width: 20rem;
-    border-radius: 1rem;
     height: auto;
-    transform: translateX(-50%) translateY(-50%) rotate(var(--angle));
-    opacity: 0;
+    object-fit: cover;
+    aspect-ratio: 3/4;
     transition: opacity .2s ease;
+    transform: translateX(-50%) translateY(-50%) rotate(var(--angle));
+    pointer-events: none;
+    opacity: 0;
+    border-radius: .5rem;
+    ;
 }
+
 .hover-image--active {
     opacity: 1;
 }
