@@ -141,11 +141,6 @@ let hoverX = 0.1;
 let hoverY = 0.1;
 let randomRotation = 0;
 
-document.addEventListener('mousemove', ({ clientX, clientY }) => {
-  hoverX = clientX;
-  hoverY = clientY;
-});
-
 const easeHoverPosition = () => {
   const compStyle = getComputedStyle(hoverImagesContainer);
   const currentX = compStyle.getPropertyValue('--x');
@@ -167,6 +162,10 @@ const clearActiveHoverImages = () => {
 };
 easeHoverPosition();
 
+document.addEventListener('mousemove', ({ clientX, clientY }) => {
+  hoverX = clientX;
+  hoverY = clientY;
+});
 hoverImagesTargets.forEach((target) => {
   target.addEventListener('mouseenter', (e) => {
     clearActiveHoverImages();
