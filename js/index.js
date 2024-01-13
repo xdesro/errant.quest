@@ -166,7 +166,11 @@ document.addEventListener('mousemove', ({ clientX, clientY }) => {
   hoverX = clientX;
   hoverY = clientY;
 });
+
 hoverImagesTargets.forEach((target) => {
+  target.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
   target.addEventListener('mouseenter', (e) => {
     clearActiveHoverImages();
     randomRotation = Math.random() * (10 - -10) + -10;
