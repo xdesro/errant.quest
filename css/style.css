@@ -214,10 +214,12 @@ article:after {
 
 .article-banner {
     position: relative;
+    overflow: hidden;
     width: 100%;
     aspect-ratio: 6/11;
     margin-bottom: 2rem;
     padding-top: .75rem;
+    border-radius: 1rem;
 }
 
 .article-banner__date,
@@ -271,12 +273,10 @@ article:after {
     --overflow: 20px;
     width: 100%;
     height: calc(100% + 20px);
-    border-radius: 1rem;
 }
 
 .article-banner picture {
     height: 100%;
-
 }
 
 .article-banner__image {
