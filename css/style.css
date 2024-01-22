@@ -94,6 +94,7 @@ article:after {
     text-decoration-style: dashed;
     text-decoration-thickness: 1px;
     text-decoration-color: #999;
+    text-underline-offset: 0.25em;
 }
 
 .site-nav {
